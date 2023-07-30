@@ -3,18 +3,10 @@ const cors = require("cors");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const { v4: uuidv4 } = require("uuid"); // Import uuidv4
 require("dotenv").config();
 
 const app = express();
 const http = require("http").createServer(app);
-
-app.use((req, res, next) => {
-  const stickySessionId = uuidv4(); // Generate a random UUID
-  res.setHeader("X-Sticky-Session", stickySessionId);
-  next();
-});
-
 
 // Express App Config
 app.use(bodyParser.json({ limit: "50mb" }));
@@ -32,7 +24,7 @@ if (process.env.PORT === "production") {
       "http://127.0.0.1:3030",
       "http://localhost:3030",
       "http://localhost:3000",
-      "https://livementor.onrender.com"
+      "https://livementor.onrender.com",
     ],
     credentials: true,
   };
@@ -46,7 +38,6 @@ const { setupSocketAPI } = require("./services/socket.service");
 
 app.use("/api/codeblock", codeblockRoutes);
 setupSocketAPI(http);
-
 
 // Make every server-side-route to match the index.html
 // so when requesting http://localhost:3030/index.html/codeblock/123 it will still respond with

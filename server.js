@@ -24,6 +24,7 @@ if (process.env.PORT === "production") {
       "http://127.0.0.1:3030",
       "http://localhost:3030",
       "http://localhost:3000",
+      "https://livementor.onrender.com"
     ],
     credentials: true,
   };

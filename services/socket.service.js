@@ -26,6 +26,7 @@ function setupSocketAPI(http) {
 
     socket.on("disconnect", () => {
       logger.info(`Socket disconnected [id: ${socket.id}]`);
+      socket.emit("role assign", { role: "mentor" });
     });
 
     socket.on("code change", (data) => {

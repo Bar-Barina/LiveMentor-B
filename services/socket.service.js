@@ -42,5 +42,3 @@ module.exports = {
   setupSocketAPI,
 };
 
-
-console.log("test");

@@ -26,7 +26,12 @@ function setupSocketAPI(http) {
 
     socket.on("disconnect", () => {
       logger.info(`Socket disconnected [id: ${socket.id}]`);
-      socket.emit("role assign", { role: "mentor" });
+      for (let codeblockId in mentors) {
+        if (mentors[codeblockId] === socket.id) {
+          delete mentors[codeblockId];
+          break;
+        }
+      }
     });
 
     socket.on("code change", (data) => {

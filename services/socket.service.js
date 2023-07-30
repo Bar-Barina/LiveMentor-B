@@ -41,4 +41,3 @@ function setupSocketAPI(http) {
 module.exports = {
   setupSocketAPI,
 };
-

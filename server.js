@@ -3,10 +3,18 @@ const cors = require("cors");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
+const { v4: uuidv4 } = require("uuid"); // Import uuidv4
 require("dotenv").config();
 
 const app = express();
 const http = require("http").createServer(app);
+
+app.use((req, res, next) => {
+  const stickySessionId = uuidv4(); // Generate a random UUID
+  res.setHeader("X-Sticky-Session", stickySessionId);
+  next();
+});
+
 
 // Express App Config
 app.use(bodyParser.json({ limit: "50mb" }));

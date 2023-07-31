@@ -24,12 +24,10 @@ async function getCodeblockById(req, res) {
   }
 }
 
+// IN PROGRESS
 async function addCodeblock(req, res) {
-  // const {loggedinUser} = req
-
   try {
     const codeblock = req.body;
-    // codeblock.owner = loggedinUser._id
     const addedCodeblock = await codeblockService.add(codeblock);
     res.json(addedCodeblock);
   } catch (err) {
@@ -50,6 +48,7 @@ async function updateCodeblock(req, res) {
   }
 }
 
+// IN PROGRESS
 async function removeCodeblock(req, res) {
   try {
     const codeblockId = req.params.id;

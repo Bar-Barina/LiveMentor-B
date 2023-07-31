@@ -1,6 +1,6 @@
 const dbService = require("../../services/db.service");
 const logger = require("../../services/logger.service");
-const ObjectId = require('mongodb').ObjectId
+const ObjectId = require("mongodb").ObjectId;
 
 async function query() {
   try {
@@ -24,6 +24,7 @@ async function getById(codeblockId) {
   }
 }
 
+// IN PROGRESS
 async function remove(codeblockId) {
   try {
     const collection = await dbService.getCollection("codeblock");
@@ -35,6 +36,7 @@ async function remove(codeblockId) {
   }
 }
 
+// IN PROGRESS
 async function add(codeblock) {
   try {
     const collection = await dbService.getCollection("codeblock");
@@ -47,7 +49,7 @@ async function add(codeblock) {
 }
 
 async function update(codeblock) {
-  console.log('service',codeblock)
+  console.log("service", codeblock);
   try {
     const codeblockToSave = {
       title: codeblock.title,
@@ -68,25 +70,22 @@ async function update(codeblock) {
   }
 }
 
-// function _filterCodeblocks(codeblocks, filterBy) {
-//   const { high, low, model } = filterBy
-//   const filteredCodeblocks = codeblocks.filter((p) => {
-//     if (model) {
-//       const regex = new RegExp(model, 'i')
-//       if (!regex.test(p.model)) return false
-//       return true
-//     }
-
-//     if (high) {
-//       codeblocks = codeblocks.sort((a, b) => b.price - a.price)
-//     }
-
-//     if (low) {
-//       codeblocks = codeblocks.sort((a, b) => a.price - b.price)
-//     }
-//   })
-//   return filteredCodeblocks
-// }
+// IN PROGRESS
+function _filterCodeblocks(codeblocks, filterBy) {
+  const { title, difficulty } = filterBy;
+  const filteredCodeblocks = codeblocks.filter((p) => {
+    if (title) {
+      const regex = new RegExp(title, "i");
+      if (!regex.test(p.title)) return false;
+      return true;
+    } else if (difficulty) {
+      const regex = new RegExp(difficulty, "i");
+      if (!regex.test(p.difficulty)) return false;
+      return true;
+    }
+  });
+  return filteredCodeblocks;
+}
 
 module.exports = {
   query,

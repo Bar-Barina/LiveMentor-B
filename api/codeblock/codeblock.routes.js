@@ -11,8 +11,11 @@ const router = express.Router();
 
 router.get("/", log, getCodeblocks);
 router.get("/:id", getCodeblockById);
+// IN PROGRESS
 router.post("/", addCodeblock);
 router.put("/:id", updateCodeblock);
-router.delete("/:id", removeCodeblock);
+// IN PROGRESS
+router.delete("/:id", removeCodeblock); 
+
 
 module.exports = router;
